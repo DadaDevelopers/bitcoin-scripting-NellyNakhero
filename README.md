@@ -13,7 +13,7 @@ OP_DUP OP_HASH160 <PubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
 
 ## Tasks:
 
-### Break down each opcode's purpose
+##### Break down each opcode's purpose
 
 | Opcode           | Meaning                                | Purpose                                                                                       |
 | ---------------- | -------------------------------------- | --------------------------------------------------------------------------------------------- |
@@ -24,14 +24,14 @@ OP_DUP OP_HASH160 <PubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
 | `OP_CHECKSIG`    | Verifies signature with the public key | Confirms the transaction is signed by the owner of the private key                            |
 
 
-### Create a diagram showing data flow
+##### Create a diagram showing data flow
 
 <img width="932" height="1140" alt="P2PKH drawio" src="https://github.com/user-attachments/assets/2fdb28e8-4a0c-4c9a-854c-4adcb2eb9c33" />
 
 
     (Therefore in the Pay-to-PubkeyHash transaction,first we prove that the public key that the redeemer states is the same as we had in the InputTX ,then we verify if the redeemer has the right secret key by verifying the signature of the transaction.)
 
-### Identify what happens if signature verification fails
+##### Identify what happens if signature verification fails
 
 * If `OP_CHECKSIG` returns `FALSE`
   * The final stack is `FALSE`
@@ -39,7 +39,7 @@ OP_DUP OP_HASH160 <PubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
   * Bitcoin nodes reject it and coins remain unspent
 
 
-### Explain the security benefits of hash verification
+##### Explain the security benefits of hash verification
 
 * Hashing the public key before placing it in the output script:
   * Reduces key exposure: The public key isnt revealed until the coins are spent.
@@ -58,7 +58,7 @@ Bob gets refund after 21 minutes
 
 ## Tasks:
 
-### Complete the HTLC script
+##### Complete the HTLC script
 
 * Conditions
   * Alice can claim funds if she reveals a secret preimage `S` that hashes to `H` within 21 minutes.
@@ -78,7 +78,7 @@ OP_ENDIF
 
 ```
 
-### Create claiming transaction script
+##### Create claiming transaction script
 
 * When Alice claims with her secret `S` and signature(Alice's Redeem Script):
 
@@ -103,7 +103,7 @@ Unlocking Script(ScriptSig):
 
 * Funds go to Alice if valid within 21 minutes
 
-### Create refund transaction script
+##### Create refund transaction script
 
 * If timeout 21 minutes passes and Alice doesnt claim
 
